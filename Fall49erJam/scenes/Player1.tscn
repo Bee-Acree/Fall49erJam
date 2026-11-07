@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bbokmyy1x6shg"]
+
+[ext_resource type="Script" uid="uid://2ocd3kwq0hkd" path="res://scripts/player_1.gd" id="1_b1h3a"]
+[ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="2_vt8vw"]
+[ext_resource type="PackedScene" uid="uid://curf7def7q4gp" path="res://scenes/Cannon.tscn" id="3_omfct"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1h3a"]
+
+[node name="Player1" type="RigidBody2D" unique_id=1136951134]
+collision_mask = 28
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_b1h3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=262591804]
+shape = SubResource("RectangleShape2D_b1h3a")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=889568]
+target_position = Vector2(0, 11)
+collision_mask = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=787805848]
+scale = Vector2(0.128, 0.128)
+texture = ExtResource("2_vt8vw")
+
+[node name="Cannon" parent="." unique_id=123440870 instance=ExtResource("3_omfct")]
+
+[connection signal="blast" from="Cannon" to="." method="_on_cannon_blast"]

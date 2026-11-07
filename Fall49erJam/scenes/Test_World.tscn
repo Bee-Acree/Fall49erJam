@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cqs5r4rhruho5"]
+
+[ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="1_2qj6q"]
+[ext_resource type="Script" uid="uid://ciqfv5801ut4t" path="res://scripts/test_world.gd" id="1_4mhds"]
+[ext_resource type="PackedScene" uid="uid://bbokmyy1x6shg" path="res://scenes/Player1.tscn" id="2_4mhds"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y6jvr"]
+
+[node name="TestWorld" type="Node2D" unique_id=705380930]
+script = ExtResource("1_4mhds")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=795500854]
+position = Vector2(1023, 995)
+collision_layer = 24
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1326071467]
+shape = SubResource("WorldBoundaryShape2D_y6jvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1773111787]
+position = Vector2(-1, 65)
+scale = Vector2(72.92001, 1)
+texture = ExtResource("1_2qj6q")
+
+[node name="Player1" parent="." unique_id=1136951134 instance=ExtResource("2_4mhds")]
+position = Vector2(1025, 182)
