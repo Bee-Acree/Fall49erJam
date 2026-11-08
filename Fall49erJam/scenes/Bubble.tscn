@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://dpmajf06haqa3" path="res://assets/placeholders/bubblePlaceholder.svg" id="2_pvjwk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y6jvr"]
-radius = 15.0
+radius = 45.0
 
-[node name="Bubble" type="RigidBody2D" unique_id=1693536182]
+[node name="Bubble" type="Area2D" unique_id=332993890]
 disable_mode = 1
-collision_layer = 2
-collision_mask = 12
-lock_rotation = true
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_pmi0y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=231637299]
 shape = SubResource("CircleShape2D_y6jvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=526831685]
+scale = Vector2(3, 3)
 texture = ExtResource("2_pvjwk")

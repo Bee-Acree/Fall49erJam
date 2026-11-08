@@ -2,22 +2,32 @@ extends CharacterBody2D
 
 signal request_player_one_load(location : Vector2)
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var SPEED : float = 30.0
+@export var MAX_SPEED : float = 1000.0
+@export var FRICTION : float = 10.0
+@export var JUMP_VELOCITY : float = -800.0
 
-var loadedInCannon := false
+var loadedInCannon : bool = false
+
+func _process(_delta: float) -> void:
+	if Input.get_joy_axis(1, JOY_AXIS_LEFT_X) < -0.2:
+		$Sprite2D.flip_h = true
+	elif Input.get_joy_axis(1, JOY_AXIS_LEFT_X) > 0.2:
+		$Sprite2D.flip_h = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not (is_on_floor() && loadedInCannon):
+	if not (is_on_floor() or loadedInCannon):
 		velocity += get_gravity() * delta
 
 	# Handle bubble ability
-	if Input.get_joy_axis(1, JOY_AXIS_TRIGGER_RIGHT) >= .9:
+	if Input.get_joy_axis(1, JOY_AXIS_TRIGGER_RIGHT) != 0:
+		print("boom bubble ability pressed")
 		$Bubble.ability_one()
 
 	# Handle loading into cannon
-	if Input.get_joy_axis(1, JOY_AXIS_TRIGGER_LEFT):
+	if Input.get_joy_axis(1, JOY_AXIS_TRIGGER_LEFT) != 0:
+		print("pow load ability pressed")
 		request_player_one_load.emit(global_position)
 
 	# Handle jump
@@ -26,18 +36,25 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
+	var direction := Input.get_joy_axis(1, JOY_AXIS_LEFT_X)
+	if direction < -0.2 or direction > 0.2:
 		velocity.x += direction * SPEED
-	else:
-		velocity.x += move_toward(velocity.x, 0, SPEED)
+	
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, FRICTION)
+	
+	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 
 	move_and_slide()
 
 
 func _on_player_1_launch_player_two(angle: float, launchPower: int) -> void:
-	velocity += (Vector2.from_angle(angle) * launchPower)
+	print("launch player 2 signal sucessful")
+	loadedInCannon = false
+	velocity += (Vector2.from_angle(angle + PI) * launchPower)
+	print(velocity)
 
 
 func _on_player_1_player_two_loaded(answer: bool) -> void:
+	print("player 2 loaded: " + str(answer))
 	loadedInCannon = answer

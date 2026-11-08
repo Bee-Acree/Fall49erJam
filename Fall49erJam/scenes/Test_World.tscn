@@ -4,20 +4,75 @@
 [ext_resource type="PackedScene" uid="uid://bbokmyy1x6shg" path="res://scenes/Player1.tscn" id="2_4mhds"]
 [ext_resource type="PackedScene" uid="uid://bd2b6f7jfuy1v" path="res://scenes/Player2.tscn" id="3_4mhds"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b1h3a"]
+friction = 0.5
+rough = true
+bounce = 0.5
+absorbent = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_safxn"]
 
 [node name="TestWorld" type="Node2D" unique_id=705380930]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=795500854]
+[node name="Floor" type="StaticBody2D" parent="." unique_id=795500854]
 position = Vector2(1023, 995)
 collision_layer = 24
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_b1h3a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1326071467]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1326071467]
 scale = Vector2(121.03998, 1)
 shape = SubResource("RectangleShape2D_safxn")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1773111787]
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1773111787]
+position = Vector2(-1, 55)
+scale = Vector2(72.92001, 1)
+texture = ExtResource("1_2qj6q")
+
+[node name="Ceiling" type="StaticBody2D" parent="." unique_id=1374727460]
+position = Vector2(1046, 25)
+rotation = 3.1415925
+collision_layer = 24
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_b1h3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling" unique_id=1690359773]
+scale = Vector2(121.03998, 1)
+shape = SubResource("RectangleShape2D_safxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ceiling" unique_id=1290021333]
+position = Vector2(-1, 55)
+scale = Vector2(72.92001, 1)
+texture = ExtResource("1_2qj6q")
+
+[node name="LWall" type="StaticBody2D" parent="." unique_id=2032186127]
+position = Vector2(-2, 884)
+rotation = 1.5707964
+collision_layer = 24
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_b1h3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LWall" unique_id=186935789]
+scale = Vector2(121.03998, 1)
+shape = SubResource("RectangleShape2D_safxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="LWall" unique_id=97466836]
+position = Vector2(-1, 55)
+scale = Vector2(72.92001, 1)
+texture = ExtResource("1_2qj6q")
+
+[node name="Rwall" type="StaticBody2D" parent="." unique_id=455055194]
+position = Vector2(1921, 583)
+rotation = -1.5707964
+collision_layer = 24
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_b1h3a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rwall" unique_id=2036258913]
+scale = Vector2(121.03998, 1)
+shape = SubResource("RectangleShape2D_safxn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rwall" unique_id=1587418647]
 position = Vector2(-1, 55)
 scale = Vector2(72.92001, 1)
 texture = ExtResource("1_2qj6q")
@@ -27,7 +82,8 @@ position = Vector2(872, 855)
 playerTwoLoadRange = 50.0
 
 [node name="Player2" parent="." unique_id=367118255 instance=ExtResource("3_4mhds")]
-position = Vector2(562, 864)
+position = Vector2(533, 799)
+MAX_SPEED = 600.0
 
 [connection signal="launch_player_two" from="Player1" to="Player2" method="_on_player_1_launch_player_two"]
 [connection signal="player_two_loaded" from="Player1" to="Player2" method="_on_player_1_player_two_loaded"]

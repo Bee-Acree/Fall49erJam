@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://curf7def7q4gp"]
 
 [ext_resource type="Script" uid="uid://djwg5uinf5dpk" path="res://scripts/cannon.gd" id="1_3pe62"]
-[ext_resource type="Texture2D" uid="uid://dwals7nqnn2jc" path="res://assets/placeholders/cannonPlaceholder.svg" id="1_xuqfy"]
+[ext_resource type="Texture2D" uid="uid://crl41pktr3twg" path="res://assets/sprites/spr_cannon_arm.png" id="2_3pe62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6jvr"]
-size = Vector2(20, 10)
+size = Vector2(36, 24.5)
 
 [node name="Cannon" type="CharacterBody2D" unique_id=123440870]
 collision_mask = 8
 script = ExtResource("1_3pe62")
+maxCooldown = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151068704]
-position = Vector2(10, 0)
+position = Vector2(2, -6.25)
 shape = SubResource("RectangleShape2D_y6jvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1657838528]
-texture = ExtResource("1_xuqfy")
-offset = Vector2(10, 0)
+position = Vector2(-17, 0)
+texture = ExtResource("2_3pe62")
+offset = Vector2(17, 0)
 
 [connection signal="draw" from="." to="." method="_on_draw"]
