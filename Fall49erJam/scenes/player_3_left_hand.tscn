@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dg23r3lu1mbuu"]
 
 [ext_resource type="Script" uid="uid://brrdy2pexy0ox" path="res://scripts/player_3_left_hand.gd" id="1_ahuab"]
-[ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="2_gp3uf"]
+[ext_resource type="Texture2D" uid="uid://cp82elr7jad5i" path="res://assets/sprites/spr_robot_hand.png" id="2_ahuab"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y6jvr"]
 friction = 0.5
@@ -20,5 +20,4 @@ script = ExtResource("1_ahuab")
 shape = SubResource("RectangleShape2D_y6jvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2041686825]
-scale = Vector2(2, 2)
-texture = ExtResource("2_gp3uf")
+texture = ExtResource("2_ahuab")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://06h8pq731vlp"]
 
 [ext_resource type="Script" uid="uid://cp54n20fhxd1a" path="res://scripts/player_3_right_hand.gd" id="1_es4am"]
-[ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="1_jgbnp"]
+[ext_resource type="Texture2D" uid="uid://dgtb8j44d0hy1" path="res://assets/sprites/spr_robot_fingergun.png" id="2_es4am"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_es4am"]
 friction = 0.5
@@ -20,8 +20,7 @@ script = ExtResource("1_es4am")
 shape = SubResource("RectangleShape2D_y6jvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1207148594]
-scale = Vector2(2, 2)
-texture = ExtResource("1_jgbnp")
+texture = ExtResource("2_es4am")
 
 [node name="BulletPoint" type="Marker2D" parent="." unique_id=477351723]
 position = Vector2(-124, -61)
