@@ -2,8 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="1_2qj6q"]
 [ext_resource type="PackedScene" uid="uid://bbokmyy1x6shg" path="res://scenes/Player1.tscn" id="2_4mhds"]
+[ext_resource type="PackedScene" uid="uid://bd2b6f7jfuy1v" path="res://scenes/Player2.tscn" id="3_4mhds"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y6jvr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_safxn"]
 
 [node name="TestWorld" type="Node2D" unique_id=705380930]
 
@@ -13,12 +14,21 @@ collision_layer = 24
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1326071467]
-shape = SubResource("WorldBoundaryShape2D_y6jvr")
+scale = Vector2(121.03998, 1)
+shape = SubResource("RectangleShape2D_safxn")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1773111787]
-position = Vector2(-1, 65)
+position = Vector2(-1, 55)
 scale = Vector2(72.92001, 1)
 texture = ExtResource("1_2qj6q")
 
 [node name="Player1" parent="." unique_id=1136951134 instance=ExtResource("2_4mhds")]
-position = Vector2(1025, 182)
+position = Vector2(872, 855)
+playerTwoLoadRange = 50.0
+
+[node name="Player2" parent="." unique_id=367118255 instance=ExtResource("3_4mhds")]
+position = Vector2(562, 864)
+
+[connection signal="launch_player_two" from="Player1" to="Player2" method="_on_player_1_launch_player_two"]
+[connection signal="player_two_loaded" from="Player1" to="Player2" method="_on_player_1_player_two_loaded"]
+[connection signal="request_player_one_load" from="Player2" to="Player1" method="_on_player_2_request_player_one_load"]
