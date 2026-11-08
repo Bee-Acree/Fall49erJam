@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dk14ca06x1ado"]
+
+[ext_resource type="Script" uid="uid://cld4e1tply0x1" path="res://scripts/right_hand_bullet.gd" id="1_8bd8s"]
+[ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="1_eks2v"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y6jvr"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6jvr"]
+radius = 32.0
+
+[node name="RightHandBullet" type="RigidBody2D" unique_id=1138981611]
+rotation = -0.00034426496
+collision_layer = 4
+collision_mask = 27
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_y6jvr")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_8bd8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490591137]
+shape = SubResource("CircleShape2D_y6jvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=24750327]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_eks2v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

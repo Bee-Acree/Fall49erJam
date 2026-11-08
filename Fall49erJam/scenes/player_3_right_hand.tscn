@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://06h8pq731vlp"]
+
+[ext_resource type="Script" uid="uid://cp54n20fhxd1a" path="res://scripts/player_3_right_hand.gd" id="1_es4am"]
+[ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="1_jgbnp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_es4am"]
+friction = 0.5
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6jvr"]
+size = Vector2(256, 256)
+
+[node name="Player3RightHand" type="AnimatableBody2D" unique_id=845511341]
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_es4am")
+script = ExtResource("1_es4am")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1205668397]
+shape = SubResource("RectangleShape2D_y6jvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1207148594]
+scale = Vector2(2, 2)
+texture = ExtResource("1_jgbnp")
+
+[node name="BulletPoint" type="Marker2D" parent="." unique_id=477351723]
+position = Vector2(-124, -61)
+
+[node name="RayCast2D" type="RayCast2D" parent="BulletPoint" unique_id=1607399126]
+rotation = 1.5707964
+collision_mask = 0

@@ -25,11 +25,8 @@ func _physics_process(_delta: float) -> void:
 		# print("LeftRight: %f    UpDown: %f" % [localCursorPosition.x, localCursorPosition.y])
 		
 		if cooldown <= 0 and cursorPosition - global_position != Vector2.ZERO and (Input.get_joy_axis(0, JOY_AXIS_RIGHT_X) > 0.2 or Input.get_joy_axis(0, JOY_AXIS_RIGHT_X) < -0.2 or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) > 0.2 or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) < -0.2):
-			print(Input.get_joy_name(0) + "poop")
-			print(Input.get_joy_name(1) + "fart")
 			blast.emit(get_angle_to(cursorPosition) + PI, playerTwoLoaded)
 			cooldown = maxCooldown
 
 func load_player_two() -> void:
-	print("Cannon: player 2 loaded")
 	playerTwoLoaded = true

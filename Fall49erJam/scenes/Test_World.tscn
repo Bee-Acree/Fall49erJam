@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://24uh44s3sjjy" path="res://assets/placeholders/icon.svg" id="1_2qj6q"]
 [ext_resource type="PackedScene" uid="uid://bbokmyy1x6shg" path="res://scenes/Player1.tscn" id="2_4mhds"]
 [ext_resource type="PackedScene" uid="uid://bd2b6f7jfuy1v" path="res://scenes/Player2.tscn" id="3_4mhds"]
+[ext_resource type="PackedScene" uid="uid://dg23r3lu1mbuu" path="res://scenes/player_3_left_hand.tscn" id="4_rvjc3"]
+[ext_resource type="PackedScene" uid="uid://06h8pq731vlp" path="res://scenes/player_3_right_hand.tscn" id="5_4c6hy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b1h3a"]
 friction = 0.5
@@ -15,7 +17,7 @@ absorbent = true
 [node name="TestWorld" type="Node2D" unique_id=705380930]
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=795500854]
-position = Vector2(1023, 995)
+position = Vector2(1020, 1090)
 collision_layer = 24
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_b1h3a")
@@ -30,7 +32,7 @@ scale = Vector2(72.92001, 1)
 texture = ExtResource("1_2qj6q")
 
 [node name="Ceiling" type="StaticBody2D" parent="." unique_id=1374727460]
-position = Vector2(1046, 25)
+position = Vector2(1045, -10)
 rotation = 3.1415925
 collision_layer = 24
 collision_mask = 7
@@ -46,7 +48,7 @@ scale = Vector2(72.92001, 1)
 texture = ExtResource("1_2qj6q")
 
 [node name="LWall" type="StaticBody2D" parent="." unique_id=2032186127]
-position = Vector2(-2, 884)
+position = Vector2(-10, 890)
 rotation = 1.5707964
 collision_layer = 24
 collision_mask = 7
@@ -62,7 +64,7 @@ scale = Vector2(72.92001, 1)
 texture = ExtResource("1_2qj6q")
 
 [node name="Rwall" type="StaticBody2D" parent="." unique_id=455055194]
-position = Vector2(1921, 583)
+position = Vector2(1930, 584)
 rotation = -1.5707964
 collision_layer = 24
 collision_mask = 7
@@ -78,12 +80,18 @@ scale = Vector2(72.92001, 1)
 texture = ExtResource("1_2qj6q")
 
 [node name="Player1" parent="." unique_id=1136951134 instance=ExtResource("2_4mhds")]
-position = Vector2(872, 855)
+position = Vector2(537, 1031)
 playerTwoLoadRange = 50.0
 
 [node name="Player2" parent="." unique_id=367118255 instance=ExtResource("3_4mhds")]
-position = Vector2(533, 799)
+position = Vector2(1407, 1023)
 MAX_SPEED = 600.0
+
+[node name="Player3LeftHand" parent="." unique_id=1573521693 instance=ExtResource("4_rvjc3")]
+position = Vector2(212, 563)
+
+[node name="Player3RightHand" parent="." unique_id=845511341 instance=ExtResource("5_4c6hy")]
+position = Vector2(1717, 535)
 
 [connection signal="launch_player_two" from="Player1" to="Player2" method="_on_player_1_launch_player_two"]
 [connection signal="player_two_loaded" from="Player1" to="Player2" method="_on_player_1_player_two_loaded"]
