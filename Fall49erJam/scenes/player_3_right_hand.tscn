@@ -23,8 +23,8 @@ shape = SubResource("RectangleShape2D_y6jvr")
 texture = ExtResource("2_es4am")
 
 [node name="BulletPoint" type="Marker2D" parent="." unique_id=477351723]
-position = Vector2(-124, -61)
+position = Vector2(127, -66)
 
 [node name="RayCast2D" type="RayCast2D" parent="BulletPoint" unique_id=1607399126]
-rotation = 1.5707964
+rotation = -1.5707964
 collision_mask = 0

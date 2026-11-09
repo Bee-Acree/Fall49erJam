@@ -13,11 +13,11 @@ func _physics_process(delta: float) -> void:
 	var localCursorPosition = Vector2(Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_X), Input.get_joy_axis(DEVICE, JOY_AXIS_RIGHT_Y)) * SPEED * delta
 	
 	if Input.is_joy_button_pressed(DEVICE, JOY_BUTTON_RIGHT_SHOULDER) and cooldown <= 0:
-		$Sprite2D.look_at(localCursorPosition)
+		$Sprite2D.look_at(localCursorPosition + global_position)
 		if Input.get_joy_axis(DEVICE, JOY_AXIS_TRIGGER_RIGHT) >= 0.9:
 			var currentBullet = bulletScene.instantiate()
-			currentBullet.global_position = $BulletPoint.global_position
-			var target = $BulletPoint/RayCast2D.target_position + $BulletPoint.global_position
+			$BulletPoint.add_child(currentBullet)
+			var target : Vector2 = localCursorPosition + global_position + currentBullet.global_position
 			currentBullet.get_child(1).look_at(target)
 			currentBullet.apply_central_impulse(target * BULLET_SPEED)
 			cooldown = MAX_COOLDOWN
